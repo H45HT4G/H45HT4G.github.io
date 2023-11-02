@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Rav G site</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://kit.fontawesome.com/3715e2b643.js" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="music-player">
+
+      <nav>
+        <div>
+          <i class="fa-solid fa-bars fa-2xl nav-btn"></i>
+        </div>
+      </nav>
+
+      <img class="album-photo" src="images/unnamed.png" alt="album-photo">
+
+      <div>
+        Artist
+      </div>
+      <div>
+        Song name
+      </div>
+
+      <input type="range" value="0" id="progress">
+
+      <div class="controls">
+        <div class="js-previous-track" onclick="previousTrack()"><i class="fa-solid fa-angle-left fa-2xl"></i></div>
+        <div class="js-playpause-track" onclick="playPauseTrack()"><i class="fa-solid fa-play fa-2xl"></i></div>
+        <div class="js-next-track" onclick="nextTrack()"><i class="fa-solid fa-angle-right fa-2xl"></i></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+
+    let playPauseBtn = document.querySelector('.js-playpause-track');
+    let previousTrackBtn = document.querySelector('.js-previous-track');
+    let nextTrackBtn = document.querySelector('.js-next-track');
+
+    let isPlaying = false;
+    let trackIndex = 0;
+
+    let currentTrack = document.createElement('audio');
+    
+    let trackList = [
+      {
+        path: "media/track01.mp3"
+      },
+
+      {
+        path: "media/untitled.mp3"
+      },
+
+      {
+        path: "media/Messi final.wav"
+      },
+
+      {
+        path: "media/rozpierdol.wav"
+      }
+    ]
+
+    function loadTrack(trackIndex) {
+      currentTrack.src = trackList[trackIndex].path;
+      currentTrack.load();
+
+      currentTrack.addEventListener("ended", nextTrack);
+    }
+
+    loadTrack(trackIndex);
+
+    function playPauseTrack() {
+
+      if (!isPlaying) playTrack();
+      else pauseTrack();
+    }
+
+    function playTrack() {
+
+      currentTrack.play();
+      isPlaying = true;
+
+      playPauseBtn.innerHTML = '<i class="fa-solid fa-pause fa-2xl"></i>';
+    }
+
+    function pauseTrack() {
+
+      currentTrack.pause();
+      isPlaying = false;
+
+      playPauseBtn.innerHTML = '<i class="fa-solid fa-play fa-2xl">';
+    }
+
+    function nextTrack() {
+      if (trackIndex < trackList.length - 1)
+      trackIndex++;
+      else trackIndex = 0;
+
+      loadTrack(trackIndex);
+      playTrack();
+    }
+
+    function previousTrack() {
+      if (trackIndex > 0)
+      trackIndex--;
+      else trackIndex = trackList.length - 1;
+
+      loadTrack(trackIndex);
+      playTrack();
+    }
+
+  </script>
+
+</body>
+</html>

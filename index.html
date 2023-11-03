@@ -2,26 +2,39 @@
 <html lang="en">
 <head>
 
+  <!--  links to fonts  -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
 
+  <!--  meta  -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!--  site title  -->
 
   <title>Rav G site</title>
 
+  <!--  links to stylesheets and icons  -->
+
   <link rel="stylesheet" href="styles.css">
   <script src="https://kit.fontawesome.com/3715e2b643.js" crossorigin="anonymous"></script>
-  <script src="app.js"></script>
-
 
 </head>
 
 <body>
+
+<!--  main body structure  -->
+
   <div class="container">
+
+    <!--  music player structure  -->
+
     <div class="music-player">
+
+      <!--  navbar  -->
 
       <nav>
         <div>
@@ -29,36 +42,61 @@
         </div>
       </nav>
 
+      <!--  album and song info section  -->
+
       <img class="album-photo" src="images/unnamed.png" alt="album-photo">
 
       <div class="js-artist"></div>
       <div class="js-name"></div>
 
-      <input type="range" value="0" id="progress">
+      <!--  slider and timer section (work in progress)  -->
+
+      <div class="slider-container">
+
+        <input type="range" min="1" max="100" value="0" id="progress" class="js-slider">
+        <div class="js-timer">00:00</div>
+
+      </div>
+      
+      <!--  controls section  -->
 
       <div class="controls">
+
         <div class="js-previous-track" onclick="previousTrack()"><i class="fa-solid fa-angle-left fa-2xl"></i></div>
-        <div class="js-playpause-track" onclick="playPauseTrack()"><i class="fa-solid fa-play fa-2xl"></i></div>
+
+        <div class="js-playpause-track" onclick="playPauseTrack();"><i class="fa-solid fa-play fa-2xl"></i></div>
+
         <div class="js-next-track" onclick="nextTrack()"><i class="fa-solid fa-angle-right fa-2xl"></i></div>
+
       </div>
 
     </div>
   </div>
 
+  <!--  JavaScript section (slider and timer functionality in progress)  -->
+
   <script>
+
+    //  album and song info variables
 
     let artistName = document.querySelector('.js-artist');
     let songName = document.querySelector('.js-name');
 
+    //  controls section variables
+
     let playPauseBtn = document.querySelector('.js-playpause-track');
     let previousTrackBtn = document.querySelector('.js-previous-track');
     let nextTrackBtn = document.querySelector('.js-next-track');
+
+    //  functions variables
 
     let isPlaying = false;
     let trackIndex = 0;
 
     let currentTrack = document.createElement('audio');
     
+    //  player track list
+
     let trackList = [
       {
         artist: "Rav G",
@@ -85,23 +123,38 @@
       }
     ]
 
+    //  function used to load tracks
+
     function loadTrack(trackIndex) {
+
+      //  loading current track by checking its index in array
+
       currentTrack.src = trackList[trackIndex].path;
       currentTrack.load();
 
-      currentTrack.addEventListener("ended", nextTrack);
+      //  displaying artist and song name by cheking its index in array
+
       artistName.innerHTML = trackList[trackIndex].artist; 
       songName.innerHTML = trackList[trackIndex].name;
 
+      //  listening if track ended and playing next if it did
+
+      currentTrack.addEventListener("ended", nextTrack);
     }
 
+    //  calling function above to pass index from array and execute it
+
     loadTrack(trackIndex);
+    
+    //  function used to play and pause current track
 
     function playPauseTrack() {
 
       if (!isPlaying) playTrack();
       else pauseTrack();
     }
+    
+    //  function used to play track and switch button icon
 
     function playTrack() {
 
@@ -111,6 +164,8 @@
       playPauseBtn.innerHTML = '<i class="fa-solid fa-pause fa-2xl"></i>';
     }
 
+    //  function used to pause track and switch button icon
+
     function pauseTrack() {
 
       currentTrack.pause();
@@ -119,7 +174,10 @@
       playPauseBtn.innerHTML = '<i class="fa-solid fa-play fa-2xl">';
     }
 
+    //  function used to play next track
+
     function nextTrack() {
+
       if (trackIndex < trackList.length - 1)
       trackIndex++;
       else trackIndex = 0;
@@ -128,7 +186,10 @@
       playTrack();
     }
 
+    //  function used to play previous track
+
     function previousTrack() {
+
       if (trackIndex > 0)
       trackIndex--;
       else trackIndex = trackList.length - 1;

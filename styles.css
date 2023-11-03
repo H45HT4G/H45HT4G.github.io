@@ -62,16 +62,16 @@ nav {
 #progress {
   -webkit-appearance: none;
   appearance: none;
-  width: 100%;
-  height: 5px;
+  width: 85%;
+  height: 0.6rem;
   background: #8F43EE;
 }
 
 #progress::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 1.5rem;
+  height: 1.5rem;
   border-radius: 50%;
   background: #8F43EE;
   border: 2px solid #F0EB8D;
@@ -80,6 +80,13 @@ nav {
 
 #progress::-webkit-slider-thumb:active {
   opacity: 0.8;
+}
+
+.js-timer {
+  display: inline-flex;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  color:  #F0EB8D;
 }
 
 .controls {

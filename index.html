@@ -28,12 +28,8 @@
 
       <img class="album-photo" src="images/unnamed.png" alt="album-photo">
 
-      <div>
-        Artist
-      </div>
-      <div>
-        Song name
-      </div>
+      <div class="js-artist"></div>
+      <div class="js-name"></div>
 
       <input type="range" value="0" id="progress">
 
@@ -48,6 +44,9 @@
 
   <script>
 
+    let artistName = document.querySelector('.js-artist');
+    let songName = document.querySelector('.js-name');
+
     let playPauseBtn = document.querySelector('.js-playpause-track');
     let previousTrackBtn = document.querySelector('.js-previous-track');
     let nextTrackBtn = document.querySelector('.js-next-track');
@@ -59,18 +58,26 @@
     
     let trackList = [
       {
+        artist: "Rav G",
+        name: "track01",
         path: "media/track01.mp3"
       },
 
       {
+        artist: "Rav G",
+        name: "untitled",
         path: "media/untitled.mp3"
       },
 
       {
+        artist: "Rav G",
+        name: "Messi final",
         path: "media/Messi final.wav"
       },
 
       {
+        artist: "Rav G",
+        name: "rozpierdol",
         path: "media/rozpierdol.wav"
       }
     ]
@@ -80,6 +87,9 @@
       currentTrack.load();
 
       currentTrack.addEventListener("ended", nextTrack);
+      artistName.innerHTML = trackList[trackIndex].artist; 
+      songName.innerHTML = trackList[trackIndex].name;
+
     }
 
     loadTrack(trackIndex);

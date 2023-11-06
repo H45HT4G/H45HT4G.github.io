@@ -55,7 +55,7 @@
 
         <div class="js-timer">00:00</div>
         <input type="range" min="1" max="100" value="0" id="progress" class="js-slider">
-        <div class="js-timer">00:00</div>
+        <div class="js-duration">00:00</div>
         
 
       </div>
@@ -86,8 +86,10 @@
 
     //  timer and slider
 
+    let slider = document.querySelector('.js-slider');
+    let totalDuration = document.querySelector('.js-duration')
     let timer = document.querySelector('.js-timer');
-    let interval = setInterval(count, 1000);
+    let interval = setInterval(seekUpdate, 1000);
 
     //  controls section variables
 
@@ -102,52 +104,60 @@
 
     let currentTrack = document.createElement('audio');
     
-    function count() {
+    function seekUpdate() {
+      
+      let seekPosition = 0;
 
       if (!isNaN(currentTrack.duration)) {
 
-        let minutes = Math.floor(currentTrack.currentTime / 60);
-        let seconds = Math.floor(currentTrack.currentTime - minutes * 60);
+        seekPosition = currentTrack.currentTime * (100 / currentTrack.duration);
 
-        if (seconds < 10 ) {
-            seconds = '0' + seconds;
+        slider.value = seekPosition;
+
+        let currentMinutes = Math.floor(currentTrack.currentTime / 60);
+        let currentSeconds = Math.floor(currentTrack.currentTime - currentMinutes * 60);
+
+        if (currentSeconds < 10 ) {
+          currentSeconds = '0' + currentSeconds;
         }
 
-        if (minutes < 10 ) {
-            minutes = '0' + minutes;
+        if (currentMinutes < 10 ) {
+          currentMinutes = '0' + currentMinutes;
         }
 
-        timer.textContent = minutes + ':' + seconds;
-
-
+        timer.textContent = currentMinutes + ':' + currentSeconds;
       }
     }
-    
+
     //  player track list
 
     let trackList = [
       {
         artist: "Rav G",
         name: "track01",
-        path: "media/track01.mp3"
+        path: "media/track01.mp3",
+        time: "02:10"
       },
 
       {
         artist: "Rav G",
         name: "untitled",
-        path: "media/untitled.mp3"
+        path: "media/untitled.mp3",
+        time: "00:53"
       },
 
       {
         artist: "Rav G",
         name: "Messi final",
-        path: "media/Messi final.mp3"
+        path: "media/Messi final.mp3",
+        time: "03:42"
       },
 
       {
         artist: "Rav G",
         name: "rozpierdol",
-        path: "media/rozpierdol.mp3"
+        path: "media/rozpierdol.mp3",
+        time: "03:12"
       }
     ]
 
@@ -164,6 +174,7 @@
 
       artistName.innerHTML = trackList[trackIndex].artist; 
       songName.innerHTML = trackList[trackIndex].name;
+      totalDuration.innerHTML = trackList[trackIndex].time;
 
       //  listening if track ended and playing next if it did
 

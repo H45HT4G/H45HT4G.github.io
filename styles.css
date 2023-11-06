@@ -92,6 +92,14 @@ nav {
   color:  #F0EB8D;
 }
 
+.js-duration {
+  display: inline-flex;
+  text-align: center;
+  font-family: 'Ubuntu', sans-serif;
+  font-size:  small;
+  color:  #F0EB8D;
+}
+
 .controls {
   display: flex;
   justify-content: center;

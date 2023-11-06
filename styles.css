@@ -1,8 +1,9 @@
 
 /*  Main section  */
 
-body {
+html, body {
   margin: 0;
+  height: 100%;
 }
 
 .container {
@@ -16,8 +17,9 @@ body {
 }
 
 .music-player {
-  width: 400px;
-  padding: 25px 35px;
+  width: 25rem;
+  height: 30rem;
+  padding: 2rem;
   text-align: center;
   background: #413543;
 }
@@ -62,7 +64,7 @@ nav {
 #progress {
   -webkit-appearance: none;
   appearance: none;
-  width: 85%;
+  width: 80%;
   height: 0.6rem;
   background: #8F43EE;
 }
@@ -86,6 +88,7 @@ nav {
   display: inline-flex;
   text-align: center;
   font-family: 'Ubuntu', sans-serif;
+  font-size:  small;
   color:  #F0EB8D;
 }
 
@@ -111,6 +114,20 @@ nav {
 
 .controls div:active {
   opacity: 0.5;
+}
+
+/*  Resonsivnes  */
+
+@media screen and (max-width: 451px) {
+  #progress {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 363px) {
+  .music-player {
+    width: 18rem;
+  }  
 }
 
 /*--------------------------------------------*/

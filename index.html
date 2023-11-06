@@ -53,8 +53,10 @@
 
       <div class="slider-container">
 
+        <div class="js-timer">00:00</div>
         <input type="range" min="1" max="100" value="0" id="progress" class="js-slider">
         <div class="js-timer">00:00</div>
+        
 
       </div>
       
@@ -82,6 +84,11 @@
     let artistName = document.querySelector('.js-artist');
     let songName = document.querySelector('.js-name');
 
+    //  timer and slider
+
+    let timer = document.querySelector('.js-timer');
+    let interval = setInterval(count, 1000);
+
     //  controls section variables
 
     let playPauseBtn = document.querySelector('.js-playpause-track');
@@ -94,6 +101,27 @@
     let trackIndex = 0;
 
     let currentTrack = document.createElement('audio');
+    
+    function count() {
+
+      if (!isNaN(currentTrack.duration)) {
+
+        let minutes = Math.floor(currentTrack.currentTime / 60);
+        let seconds = Math.floor(currentTrack.currentTime - minutes * 60);
+
+        if (seconds < 10 ) {
+            seconds = '0' + seconds;
+        }
+
+        if (minutes < 10 ) {
+            minutes = '0' + minutes;
+        }
+
+        timer.textContent = minutes + ':' + seconds;
+
+
+      }
+    }
     
     //  player track list
 

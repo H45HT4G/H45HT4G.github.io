@@ -39,7 +39,13 @@
 
       <nav>
         <div>
-          <i class="fa-solid fa-bars fa-2xl nav-btn"></i>
+          <i class="fa-solid fa-bars fa-2xl nav-btn js-dropdown" onclick="dropdownMenu()"></i>
+          <div id="dropDown" class="dropdown-content">
+            <a class="js-pickSong">track01</a>
+            <a class="js-pickSong">untitled</a>
+            <a class="js-pickSong">Messi Final</a>
+            <a class="js-pickSong">rozpierdol</a>
+          </div>
         </div>
       </nav>
 
@@ -80,10 +86,32 @@
 
   <script>
 
+    //  dropdown menu functionality
+
+    function dropdownMenu() {
+      document.getElementById('dropDown').classList.toggle('show');
+    }
+
+    window.onclick = function (event) {
+      if (!event.target.matches('.js-dropdown')) {
+        let dropdowns = document.getElementsByClassName('dropdown-content');
+        let i;
+        for (i = 0; i < dropdowns.length; i++) {
+          let openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
+    
+
     //  album and song info variables
 
     let artistName = document.querySelector('.js-artist');
     let songName = document.querySelector('.js-name');
+    let pickSong = document.querySelectorAll('.js-pickSong');
 
     //  timer and slider
 
@@ -104,7 +132,9 @@
     let trackIndex = 0;
 
     let currentTrack = document.createElement('audio');
-    
+
+    //  slider and timer functionality
+
     function seekUpdate() {
       
       let seekPosition = 0;
@@ -129,6 +159,11 @@
         timer.textContent = currentMinutes + ':' + currentSeconds;
       }
     }
+
+    document.querySelector('.js-slider').addEventListener('input', function (e) {
+      let sliderValue = e.target.value;
+      currentTrack.currentTime = sliderValue * currentTrack.duration / 100;
+    });
 
     //  player track list
 
@@ -237,6 +272,16 @@
       loadTrack(trackIndex);
       playTrack();
     }
+
+    //  function used to play track by clicking on it
+
+    pickSong.forEach(function (element, index) {
+      element.addEventListener('click', function () {
+        trackIndex = index;
+        loadTrack(trackIndex);
+        playTrack();
+      })
+    })
 
   </script>
 

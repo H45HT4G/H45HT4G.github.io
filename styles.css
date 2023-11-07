@@ -57,6 +57,48 @@ nav {
   color: #8F43EE;
 }
 
+.nav-btn:hover {
+  color: #F0EB8D;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #413543;
+  min-width: 160px;
+  box-shadow: 0 5px 20px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #F0EB8D;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #8F43EE;
+  color: #F0EB8D;
+}
+
+.show {
+  display: block;
+}
+
+.js-pickSong {
+  color: #F0EB8D;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+
+}
 /*--------------------------------------------*/
 
 /*  Controls section  */

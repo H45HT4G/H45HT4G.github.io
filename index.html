@@ -46,11 +46,10 @@
           
           <button style="background-color: #413543; border: none; padding: 0%;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-bars fa-2xl nav-btn js-dropdown"></i></button>
           <ul class="dropdown-menu dropdown-menu-end" style="background-color: #413543;">
-            <li><button class="dropdown-item js-pickSong" type="button"><p  >track01</p></button></li>
-            <li><button class="dropdown-item js-pickSong" type="button"><p  >untitled</p></button></li>
-            <li><button class="dropdown-item js-pickSong" type="button"><p  >Messi final
-            </p></button></li>
-            <li><button class="dropdown-item js-pickSong" type="button"><p class="js-queue-menu" >rozpierdol</p></button></li>
+            <li><button class="dropdown-item js-pickSong js-track-list1" type="button"></button></li>
+            <li><button class="dropdown-item js-pickSong js-track-list2" type="button"></button></li>
+            <li><button class="dropdown-item js-pickSong js-track-list3" type="button"></button></li>
+            <li><button class="dropdown-item js-pickSong js-track-list4" type="button"></button></li>
           </ul>
 
         </div>
@@ -183,9 +182,14 @@
       }
     ]
 
-    
+    //  function used to display track list in dropdown menu
 
-    
+    let id = 1;
+
+    for (let i = 0; i < trackList.length; i++) {
+       document.querySelector('.js-track-list' + id).innerHTML = trackList[i].name;
+       id++;
+    }
 
     //  function used to load tracks
 

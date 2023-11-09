@@ -19,7 +19,7 @@ html, body {
 .music-player {
   border-radius: 2rem;
   width: 30rem;
-  height: 38rem;
+  height: 40rem;
   padding: 2rem;
   text-align: center;
   background: #413543;
@@ -139,9 +139,9 @@ nav {
 }
 
 .controls div {
-  width: 60px;
-  height: 60px;
-  margin: 20px;
+  width: 70px;
+  height: 70px;
+  margin: 4rem 2rem;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
